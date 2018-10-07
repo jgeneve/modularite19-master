@@ -2,7 +2,7 @@ package session1.td;
 
 public class Succ implements Nat{
 	
-	public static FabriqueNaturels<Nat> FAB = new NatParInt();
+	public static FabriqueNaturels<Nat> FAB = new Succ(NatParInt.FAB.creerNatAvecValeur(0));
 	private Nat predecesseur;
 	
 	public Succ(Nat predecesseur) {
@@ -11,13 +11,13 @@ public class Succ implements Nat{
 
 	@Override
 	public Nat creerNatAvecValeur(int x) {
-		return new Succ(FAB.creerNatAvecValeur(x));
+		return new Succ(NatParInt.FAB.creerNatAvecValeur(x));
 	}
 	
 	//Factory with a String value as argument
 	@Override
 	public Nat creerNatAvecRepresentation(String val) {
-		return new Succ(FAB.creerNatAvecValeur(Integer.parseInt(val)));
+		return new Succ(NatParInt.FAB.creerNatAvecValeur(Integer.parseInt(val)));
 	}
 	
 	//----------- General methods (below)
@@ -52,7 +52,7 @@ public class Succ implements Nat{
 	//Factory method to create a object where the value is zero
 	@Override
 	public Nat creerZero() {
-		return creerNatAvecValeur(0);
+		return NatParInt.FAB.creerNatAvecValeur(0);
 	}
 
 	//Return the predecessor of an object
@@ -60,13 +60,13 @@ public class Succ implements Nat{
 	public Nat predecesseur() {
 		if(this.estNul())
 			throw new UnsupportedOperationException("You cannot use this operation with 0");
-		return creerNatAvecValeur(this.val()-1);
+		return FAB.creerNatAvecValeur(this.val()-1);
 	}
 	
 	//Create the successor of an object
 	@Override
 	public Nat creerSuccesseur(Nat predecesseur) {
-		return creerNatAvecValeur(predecesseur.val()+1);
+		return FAB.creerNatAvecValeur(predecesseur.val()+1);
 	}
 
 	

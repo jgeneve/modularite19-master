@@ -9,8 +9,8 @@ public class Test {
 		test(NatDecimal.FAB);
 		System.out.println("------------- Launch of the tests for Zero -------------");
 		test(Zero.FAB);
-		//System.out.println("------------- Launch of the tests for Succ -------------");
-		//test(Succ.FAB);
+		System.out.println("------------- Launch of the tests for Succ -------------");
+		test(Succ.FAB);
 	}
 	
 	private static void test(FabriqueNaturels<Nat> fab) {		

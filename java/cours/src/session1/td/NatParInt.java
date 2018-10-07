@@ -2,9 +2,7 @@ package session1.td;
 
 public class NatParInt implements Nat {
 	protected int val;
-	public static FabriqueNaturels<Nat> FAB = new NatParInt();
-
-	public NatParInt() {} //Default constructor, create an empty object
+	public static FabriqueNaturels<Nat> FAB = new NatParInt(0);
 	
 	//Constructor that got as an argument a define value
 	public NatParInt(int i) {

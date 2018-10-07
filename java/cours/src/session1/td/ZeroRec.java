@@ -2,7 +2,7 @@ package session1.td;
 
 public class ZeroRec extends Zero implements Nat {
 	
-	public static FabriqueNaturels<Nat> FAB = new NatParInt();
+	public static FabriqueNaturels<Nat> FAB = new ZeroRec();
 
 	public ZeroRec() {}
 	
@@ -28,7 +28,7 @@ public class ZeroRec extends Zero implements Nat {
 	//Multiplication between two numbers
 	@Override
 	public Nat produit(Nat x) {
-		return creerNatAvecValeur(this.val()*x.val());
+		return FAB.creerNatAvecValeur(this.val()*x.val());
 	}
 
 	//Return a neutral element of the multiplication, a.k.a one

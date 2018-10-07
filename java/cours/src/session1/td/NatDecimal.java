@@ -2,10 +2,8 @@ package session1.td;
 
 public class NatDecimal implements Nat, FabriqueNaturels<Nat> {
 	
-	public static FabriqueNaturels<Nat> FAB = new NatDecimal();
+	public static FabriqueNaturels<Nat> FAB = new NatDecimal(Integer.toString(0));
 	private String chiffres;
-	
-	public NatDecimal() {} //Default constructor
 	
 	//Constructor with argument
 	public NatDecimal(String rep) {

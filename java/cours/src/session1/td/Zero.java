@@ -2,7 +2,7 @@ package session1.td;
 
 public class Zero implements Nat{
 
-	public static FabriqueNaturels<Nat> FAB = new NatParInt();
+	public static FabriqueNaturels<Nat> FAB = new Zero();
 	
 	public Zero() {	}
 	
