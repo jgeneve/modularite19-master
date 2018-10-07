@@ -2,7 +2,7 @@ package session1.td;
 
 public class Succ implements Nat{
 	
-	public static FabriqueNaturels<Nat> FAB = new Succ();
+	public static FabriqueNaturels<Nat> FAB = new NatParInt();
 	private Nat predecesseur;
 	
 	public Succ(Nat predecesseur) {
@@ -11,7 +11,13 @@ public class Succ implements Nat{
 
 	@Override
 	public Nat creerNatAvecValeur(int x) {
-		return null;
+		return new Succ(FAB.creerNatAvecValeur(x));
+	}
+	
+	//Factory with a String value as argument
+	@Override
+	public Nat creerNatAvecRepresentation(String val) {
+		return new Succ(FAB.creerNatAvecValeur(Integer.parseInt(val)));
 	}
 	
 	//----------- General methods (below)
@@ -40,7 +46,7 @@ public class Succ implements Nat{
 	//Return the value of the NatParInt
 	@Override
 	public int val() {
-		return this.val;
+		return this.predecesseur.val();
 	}
 
 	//Factory method to create a object where the value is zero
