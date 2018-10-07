@@ -1,0 +1,40 @@
+* Installation
+
+** node : cf. https://nodejs.org/en/
+
+- choisir la version LTS (Long Term Support) 8.12.0,
+- l'installer dans un répertoire X (nom sans espace),
+- rajouter à la fin de $HOME/.bashrc :
+
+PATH="X/node-v8.12.0-linux-x64/bin":$PATH
+export PATH
+
+- tester dans un nouveau shell :
+  - > whereis node
+  - > whereis npm
+
+vous devez obtenir "X/node-v8.12.0-linux-x64/bin/node ou npm"
+
+* visual studio code : version 1.27.2
+
+- installer code : cf. https://code.visualstudio.com/Download
+
+- configurer code  pour Typescript : cf. https://code.visualstudio.com/docs/languages/typescript
+
+- ouvrir code dans le répertoire du projet (code projet) puis un fichier .ts :
+  la version de typescript 3.0 apparaît en bas à droite.
+
+- vérifier l'accès au compilateur en ligne de commande :
+  - > tsc --version
+
+* Typescript
+
+(options de compilation)
+
+- fichier de configuration : tsconfig.json
+
+* npm
+
+(processus pour compiler, exécuter, dépendances)
+
+- fichier package.json
