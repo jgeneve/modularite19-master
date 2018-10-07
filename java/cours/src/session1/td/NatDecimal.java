@@ -42,7 +42,9 @@ public class NatDecimal implements Nat, FabriqueNaturels<Nat> {
 
 	@Override
 	public int chiffre(int i) {
-		return this.estNul() ? this.val()%10 : (creerNatAvecValeur(this.val()%10).chiffre(i-1));
+		if(i < this.taille())
+			return Character.getNumericValue(chiffres.charAt(chiffres.length()-1-i));
+		return 0;
 	}
 
 	//Return the length of the number without the leading zeros
@@ -85,7 +87,21 @@ public class NatDecimal implements Nat, FabriqueNaturels<Nat> {
 	//Add two numbers (the pointed one and the one passed in arg)
 	@Override
 	public Nat somme(Nat x) {
-		return creerNatAvecValeur(this.val()+x.val());
+	  int t = this.taille() < x.taille() ? x.taille() : this.taille();
+	  StringBuilder rep = new StringBuilder();
+	  int retenue = 0;
+	  for(int i = 0; i < t; i++){
+	    int chiffre = this.chiffre(i) + x.chiffre(i) + retenue;
+	    if(chiffre > 9){
+	      chiffre = chiffre - 10;
+	      retenue = 1;
+	    }else{
+	      retenue = 0;
+	    }
+	    rep.append(Integer.toString(chiffre));
+	  }
+	  rep = retenue == 0 ? rep : rep.append(1);
+	  return creerNatAvecRepresentation(rep.reverse().toString());
 	}
 
 	//Return a neutral element of the addition, a.k.a zero

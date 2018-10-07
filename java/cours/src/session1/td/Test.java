@@ -29,16 +29,18 @@ public class Test {
 		System.out.println("> Test five");
 		Nat five = fab.creerNatAvecValeur(5);
 		System.out.println(five);
+		System.out.println("Predecessor ? " + five.predecesseur().val());
 		Nat six = fab.creerNatAvecValeur(6);
 		System.out.println(six);
 		System.out.println("Sum 5+6 ? " +five.somme(six).val());
-		System.out.println("Sum 5x6 ? " +five.produit(six).val());
+		System.out.println("Multiplication 5x6 ? " +five.produit(six).val());
 		Nat x = fab.creerNatAvecValeur(33);
-		Nat y = fab.creerNatAvecValeur(6);
-		System.out.println("Div 33/6 ? Quotient: " + x.div(y).val() + " - Rest: "+ x.modulo(y).val());
+		System.out.println("Div 33/6 ? Quotient: " + x.div(six).val() + " - Rest: "+ x.modulo(six).val());
+		
 		try {
-			Nat z = fab.creerNatAvecValeur(2_000_000_000);
-			System.out.println(z.val() * z.val() +" ? " + z.somme(z).val());
+			Nat z = fab.creerNatAvecValeur(2000000000);
+			Nat sum = z.somme(z);
+			System.out.println(z.val() +"x"+ z.val() +" ? " + z.somme(z));
 		} catch(Exception e ) {
 			e.printStackTrace();
 		}

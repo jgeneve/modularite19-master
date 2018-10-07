@@ -14,7 +14,6 @@ public class SuccRec extends Succ implements Nat {
 		return FAB.creerNatAvecValeur(predecesseur.val()+1);
 	}
 
-	
 	//Add two numbers (the pointed one and the one passed in arg)
 	@Override
 	public Nat somme(Nat x) {

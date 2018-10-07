@@ -20,6 +20,12 @@ public class Succ implements Nat{
 		return new Succ(NatParInt.FAB.creerNatAvecValeur(Integer.parseInt(val)));
 	}
 	
+	@Override
+	public String toString() {
+		return "Succ [predecesseur=" + predecesseur + "]";
+	}
+	
+	
 	//----------- General methods (below)
 
 	//Verify is the value is equal to 0 or not
