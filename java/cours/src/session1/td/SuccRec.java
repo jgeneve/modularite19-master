@@ -23,7 +23,7 @@ public class SuccRec extends Succ implements Nat {
 	//Return a neutral element of the addition, a.k.a zero
 	@Override
 	public Nat zero() {
-		return FAB.creerNatAvecValeur(0);
+		return new Zero();
 	}
 
 	//Multiplication between two numbers

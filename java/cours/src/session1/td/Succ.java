@@ -11,18 +11,19 @@ public class Succ implements Nat{
 
 	@Override
 	public Nat creerNatAvecValeur(int x) {
-		return new Succ(NatParInt.FAB.creerNatAvecValeur(x));
+		return (x == 0) ? Zero.FAB.creerZero() : creerSuccesseur(NatParInt.FAB.creerNatAvecValeur(x-1));
 	}
 	
 	//Factory with a String value as argument
 	@Override
 	public Nat creerNatAvecRepresentation(String val) {
+		if(val.isEmpty()) throw new IllegalArgumentException();
 		return new Succ(NatParInt.FAB.creerNatAvecValeur(Integer.parseInt(val)));
 	}
 	
 	@Override
 	public String toString() {
-		return "Succ [predecesseur=" + predecesseur + "]";
+		return "Succ [Val=" + this.val() + "]";
 	}
 	
 	
@@ -52,13 +53,13 @@ public class Succ implements Nat{
 	//Return the value of the NatParInt
 	@Override
 	public int val() {
-		return this.predecesseur.val();
+		return this.predecesseur.val()+1;
 	}
 
 	//Factory method to create a object where the value is zero
 	@Override
 	public Nat creerZero() {
-		return NatParInt.FAB.creerNatAvecValeur(0);
+		return new Zero();
 	}
 
 	//Return the predecessor of an object
@@ -72,7 +73,7 @@ public class Succ implements Nat{
 	//Create the successor of an object
 	@Override
 	public Nat creerSuccesseur(Nat predecesseur) {
-		return FAB.creerNatAvecValeur(predecesseur.val()+1);
+		return new Succ(predecesseur);
 	}
 
 	

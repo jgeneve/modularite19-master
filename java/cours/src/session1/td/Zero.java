@@ -82,13 +82,13 @@ public class Zero implements Nat{
 	//Return a neutral element of the addition, a.k.a zero
 	@Override
 	public Nat zero() {
-		return creerNatAvecValeur(0);
+		return creerZero();
 	}
 
 	//Multiplication between two numbers
 	@Override
 	public Nat produit(Nat x) {
-		return creerNatAvecValeur(this.val()*x.val());
+		return zero();
 	}
 
 	//Return a neutral element of the multiplication, a.k.a one
@@ -100,13 +100,13 @@ public class Zero implements Nat{
 	//Return the rest of the Euclidean division this.val/x
 	@Override
 	public Nat modulo(Nat x) {
-		return (x.estNul()) ? null : creerNatAvecValeur(this.val()%x.val());
+		return zero();
 	}
 
 	//Return the quotient of the division this.val/x
 	@Override
 	public Nat div(Nat x) {
-		return (x.estNul()) ? null : creerNatAvecValeur(this.val()/x.val());
+		return zero();
 	}
 
 	//Equals method
