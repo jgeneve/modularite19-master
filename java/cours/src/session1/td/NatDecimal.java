@@ -42,7 +42,7 @@ public class NatDecimal implements Nat, FabriqueNaturels<Nat> {
 
 	@Override
 	public int chiffre(int i) {
-		if(i < 0)
+		if(i < 0 || i > this.taille())
 			throw new IllegalArgumentException();
 		String number = Integer.toString(this.val());
 		int length = number.length();
