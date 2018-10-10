@@ -26,7 +26,7 @@ public class NatParInt implements Nat {
 	//Display method
 	@Override
 	public String toString() {
-		return "NatParInt [val=" + this.val() + "]";
+		return String.valueOf(this.val());
 	}
 	
 	//----------- General methods (below)
@@ -39,17 +39,18 @@ public class NatParInt implements Nat {
 
 	@Override
 	public int chiffre(int i) {
-		return this.estNul() ? this.val()%10 : (creerNatAvecValeur(this.val()%10).chiffre(i-1));
+		if(i < 0)
+			throw new IllegalArgumentException();
+		String number = Integer.toString(this.val());
+		int length = number.length();
+		i = length - i - 1;
+		return Integer.parseInt(Character.toString(number.charAt(i)));
 	}
 
 	//Return the length of the number without the leading zeros
 	@Override
 	public int taille() {
-		String x = Integer.toString(this.val()).replaceFirst("^0+(?!$)"," ");
-		if (x.length() > 0) 
-			return x.length();
-		else 
-			throw new UnsupportedOperationException("Empty number");
+		return Integer.toString(this.val()).length();
 	}
 
 	//Return the value of the NatParInt
@@ -106,7 +107,10 @@ public class NatParInt implements Nat {
 	//Return the rest of the Euclidean division this.val/x
 	@Override
 	public Nat modulo(Nat x) {
-		return (x.estNul()) ? null : creerNatAvecValeur(this.val()%x.val());
+		if(x.estNul())
+			throw new IllegalArgumentException("On ne peut pas diviser par zero");
+		
+		return creerNatAvecValeur(this.val()%x.val());
 	}
 
 	//Return the quotient of the division this.val/x

@@ -29,7 +29,7 @@ public class NatDecimal implements Nat, FabriqueNaturels<Nat> {
 	
 	@Override
 	public String toString() {
-		return "NatDecimal [chiffres=" + chiffres + "]";
+		return String.valueOf(this.val());
 	}
 	
 	//----------- General methods (below)
@@ -42,19 +42,18 @@ public class NatDecimal implements Nat, FabriqueNaturels<Nat> {
 
 	@Override
 	public int chiffre(int i) {
-		if(i < this.taille())
-			return Character.getNumericValue(chiffres.charAt(chiffres.length()-1-i));
-		return 0;
+		if(i < 0)
+			throw new IllegalArgumentException();
+		String number = Integer.toString(this.val());
+		int length = number.length();
+		i = length - i - 1;
+		return Integer.parseInt(Character.toString(number.charAt(i)));
 	}
 
 	//Return the length of the number without the leading zeros
 	@Override
 	public int taille() {
-		String x = Integer.toString(this.val()).replaceFirst("^0+(?!$)"," ");
-		if (x.length() > 0) 
-			return x.length();
-		else 
-			throw new UnsupportedOperationException("Empty number");
+		return Integer.toString(this.val()).length();
 	}
 
 	//Return the value of the NatParInt
@@ -87,7 +86,7 @@ public class NatDecimal implements Nat, FabriqueNaturels<Nat> {
 	//Add two numbers (the pointed one and the one passed in arg)
 	@Override
 	public Nat somme(Nat x) {
-	  int t = this.taille() < x.taille() ? x.taille() : this.taille();
+	  int t = this.taille() < x.taille() ? this.taille() : x.taille();
 	  StringBuilder rep = new StringBuilder();
 	  int retenue = 0;
 	  for(int i = 0; i < t; i++){
@@ -125,7 +124,10 @@ public class NatDecimal implements Nat, FabriqueNaturels<Nat> {
 	//Return the rest of the Euclidean division this.val/x
 	@Override
 	public Nat modulo(Nat x) {
-		return (x.estNul()) ? null : creerNatAvecValeur(this.val()%x.val());
+		if(x.estNul())
+			throw new IllegalArgumentException("On ne peut pas diviser par zero");
+		
+		return creerNatAvecValeur(this.val()%x.val());
 	}
 
 	//Return the quotient of the division this.val/x

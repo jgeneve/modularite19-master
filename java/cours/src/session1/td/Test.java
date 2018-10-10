@@ -3,46 +3,40 @@ package session1.td;
 public class Test {
 
 	public static void main(String[] args) {
-		System.out.println("------------- Launch of the tests for NatParInt -------------");
+		System.out.println("Tests NatParInt");
 		test(NatParInt.FAB);		
-		System.out.println("------------- Launch of the tests for NatDecimal -------------");
+		System.out.println("\nTests NatDecimal");
 		test(NatDecimal.FAB);
-		System.out.println("------------- Launch of the tests for Zero -------------");
+		System.out.println("\nTests Zero");
 		test(Zero.FAB);
-		System.out.println("------------- Launch of the tests for Succ -------------");
+		System.out.println("\nTests Succ");
 		test(Succ.FAB);
 	}
 	
 	private static void test(FabriqueNaturels<Nat> fab) {		
-		System.out.println("> Test zero ");
 		Nat zero = fab.creerZero();
-		System.out.println(zero);
-		System.out.println("0 equals 0 ? " + zero.equals(zero.zero()));
-
-		System.out.println("> Test un ");
+		System.out.println("0 ? "+zero);
+		System.out.println("0 == 0 - true ? " + zero.equals(zero.zero()));
 		Nat un = fab.creerSuccesseur(zero);
-		System.out.println("Successor zero ? " + un.val());
-		System.out.println(un);
-		System.out.println("1 equals 1 ? " + un.equals(un.un()));
-		System.out.println("Predecessor 1 ? " + un.predecesseur().val());
-		
-		System.out.println("> Test five");
+		System.out.println("Successeur de 0 - 1 ? " + un);
+		System.out.println("1 == 1 - true ? " + un.equals(un.un()));
+		System.out.println("Predecesseur de 1 - 0 ? " + un.predecesseur());
 		Nat five = fab.creerNatAvecValeur(5);
-		System.out.println(five);
-		System.out.println("Predecessor ? " + five.predecesseur().val());
+		System.out.println("5 ? " + five);
+		System.out.println("Predecesseur de 5 - 4 ? " + five.predecesseur());
 		Nat six = fab.creerNatAvecValeur(6);
-		System.out.println(six);
-		System.out.println("Sum 5+6 ? " +five.somme(six).val());
-		System.out.println("Multiplication 5x6 ? " +five.produit(six).val());
+		System.out.println("6 ? " + six);
+		System.out.println("Somme 5 + 6 - 11 ? " +five.somme(six));
+		System.out.println("Produit 5 x 6 - 30 ? " + five.produit(six));
 		Nat x = fab.creerNatAvecValeur(33);
-		System.out.println("Div 33/6 ? Quotient: " + x.div(six).val() + " - Rest: "+ x.modulo(six).val());
+		System.out.println("Division 33 / 6 Quotient - 5  ? " + x.div(six) + " | - Reste : 3 ? "+ x.modulo(six));
+		
 		
 		try {
 			Nat z = fab.creerNatAvecValeur(2000000000);
 			Nat sum = z.somme(z);
 			System.out.println(z.val() +"x"+ z.val() +" ? " + z.somme(z));
 		} catch(Exception e ) {
-			e.printStackTrace();
 		}
 	}
 

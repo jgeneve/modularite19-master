@@ -19,7 +19,7 @@ public class Zero implements Nat{
 	
 	@Override
 	public String toString() {
-		return "Zero [Value : "+ this.val() + "]";
+		return "0";
 	}
 	
 	
@@ -33,17 +33,18 @@ public class Zero implements Nat{
 
 	@Override
 	public int chiffre(int i) {
-		return this.estNul() ? this.val()%10 : (creerNatAvecValeur(this.val()%10).chiffre(i-1));
+		if(i < 0)
+			throw new IllegalArgumentException();
+		String number = Integer.toString(this.val());
+		int length = number.length();
+		i = length - i - 1;
+		return Integer.parseInt(Character.toString(number.charAt(i)));
 	}
 
 	//Return the length of the number without the leading zeros
 	@Override
 	public int taille() {
-		String x = Integer.toString(this.val()).replaceFirst("^0+(?!$)"," ");
-		if (x.length() > 0) 
-			return x.length();
-		else 
-			throw new UnsupportedOperationException("Empty number");
+		return 1;
 	}
 
 	//Return the value of the NatParInt
@@ -61,9 +62,7 @@ public class Zero implements Nat{
 	//Return the predecessor of an object
 	@Override
 	public Nat predecesseur() {
-		if(this.estNul())
-			throw new UnsupportedOperationException("You cannot use this operation with 0");
-		return creerNatAvecValeur(this.val()-1);
+		throw new UnsupportedOperationException("You cannot use this operation with 0");
 	}
 	
 	//Create the successor of an object
@@ -100,6 +99,8 @@ public class Zero implements Nat{
 	//Return the rest of the Euclidean division this.val/x
 	@Override
 	public Nat modulo(Nat x) {
+		if(x.estNul())
+			throw new IllegalArgumentException("On ne peut pas diviser par zero");
 		return zero();
 	}
 
