@@ -34,7 +34,6 @@ public class Test {
 		
 		try {
 			Nat z = fab.creerNatAvecValeur(2000000000);
-			Nat sum = z.somme(z);
 			System.out.println(z.val() +"x"+ z.val() +" ? " + z.somme(z));
 		} catch(Exception e ) {
 		}

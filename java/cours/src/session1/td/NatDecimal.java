@@ -29,7 +29,7 @@ public class NatDecimal implements Nat, FabriqueNaturels<Nat> {
 	
 	@Override
 	public String toString() {
-		return String.valueOf(this.val());
+		return this.chiffres;
 	}
 	
 	//----------- General methods (below)
@@ -100,7 +100,8 @@ public class NatDecimal implements Nat, FabriqueNaturels<Nat> {
 	    rep.append(Integer.toString(chiffre));
 	  }
 	  rep = retenue == 0 ? rep : rep.append(1);
-	  return creerNatAvecRepresentation(rep.reverse().toString());
+	  return new NatDecimal(rep.reverse().toString());
+	  //return creerNatAvecRepresentation(rep.reverse().toString());
 	}
 
 	//Return a neutral element of the addition, a.k.a zero
